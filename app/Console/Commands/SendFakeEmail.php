@@ -49,7 +49,7 @@ class SendFakeEmail extends Command
         }
          $this->info('The fake emails are send successfully!');*/
 
-        Mail::send('emails.fake_users', $data =array(),  function ($message) use($user)  {
+        Mail::send('emails.fake_users', $data =array(),  function ($message)  {
             $message->to('xxx@gmail.com')->subject('xxx');
             $message->from( 'xxx@gmail.com');
         } );
