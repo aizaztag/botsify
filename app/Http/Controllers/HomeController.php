@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendEmailJob;
+use App\Jobs\UserJob;
 use App\Traits\UserTrait;
 use App\User;
 use Illuminate\Http\Request;
@@ -15,6 +17,20 @@ class HomeController extends Controller
     public function calculate_sum_update_to_users_table()
     {
          $this->calculate_sum();
-         //Artisan::call('email:send_fake');
+         dispatch(new SendEmailJob());
+        //Artisan::call('email:send_fake');
+    }
+
+    public function send_fake_email_users()
+    {
+        dispatch(new UserJob());
+
+    }
+
+    public function queue()
+    {
+        $exitCode = Artisan::call('queue:work');
+        echo 'queue:work';
+
     }
 }

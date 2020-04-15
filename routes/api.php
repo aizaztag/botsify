@@ -19,3 +19,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::get('/calculate-sum' , 'HomeController@calculate_sum_update_to_users_table');
 Route::get('send-mail', 'HomeController@send_fake_email_users');
+Route::get('/queue', 'HomeController@queue');

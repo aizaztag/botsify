@@ -2,6 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Mail\SendMailable;
+use App\Traits\UserTrait;
 use App\User;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -12,7 +14,7 @@ use Illuminate\Support\Facades\Mail;
 
 class SendEmailJob implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use UserTrait , Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Create a new job instance.
@@ -32,11 +34,19 @@ class SendEmailJob implements ShouldQueue
     public function handle()
     {
 
+        //$this->calculate_sum();
+
+        //Mail::to('taylor@laravel.com')->later('1');
+
+
+        /*Mail::send('emails.fake_users', $data =array(),  function ($message)  {
+            $message->to('xxx@gmail.com')->subject('xxx');
+            $message->from( 'xxx@gmail.com');
+        } );*/
 
          $users =  User::all();
-
          foreach ($users as $user) {
-             Mail::send( 'emails.fake_users', $data =array(),  function ($message) use($user)  {
+             Mail::later( 3 , 'emails.fake_users', $data =array(),  function ($message) use($user)  {
                  $message->to($user->email)->subject('xxx');
                  $message->from( 'xxx@gmail.com');
              } );
