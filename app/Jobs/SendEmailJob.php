@@ -46,10 +46,11 @@ class SendEmailJob implements ShouldQueue
 
          $users =  User::all();
          foreach ($users as $user) {
-             Mail::later( 3 , 'emails.fake_users', $data =array(),  function ($message) use($user)  {
+             Mail::send( 'emails.fake_users', $data =array(),  function ($message) use($user)  {
                  $message->to($user->email)->subject('xxx');
                  $message->from( 'xxx@gmail.com');
              } );
+             sleep(3);
          }
 /*
 
