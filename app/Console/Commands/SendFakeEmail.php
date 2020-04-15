@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Jobs\SendEmailJob;
 use App\Traits\UserTrait;
 use App\User;
 use Illuminate\Console\Command;
@@ -42,23 +43,8 @@ class SendFakeEmail extends Command
      */
     public function handle()
     {
-        $users =  User::all();
         $this->calculate_sum();
-
-        foreach ($users as $user) {
-            Mail::send('emails.fake_users', $data =array(),  function ($message) use($user)  {
-                $message->to($user->email)->subject('xxx');
-                $message->from( 'xxx@gmail.com');
-            } );
-        }
-         $this->info('The fake emails are send successfully!');
-
-       /* Mail::send('emails.fake_users', $data =array(),  function ($message)  {
-            $message->to('xxx@gmail.com')->subject('xxx');
-            $message->from( 'xxx@gmail.com');
-        } );
-
-        $this->info('The fake emails are send successfully!');*/
-
+        dispatch(new SendEmailJob())->delay(now()->addMinutes(10));
+        $this->info('The fake emails are send successfully!');
     }
 }
