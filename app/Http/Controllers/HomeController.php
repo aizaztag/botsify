@@ -12,7 +12,7 @@ class HomeController extends Controller
 
     public function calculate_sum_update_to_users_table()
     {
-        $this->calculate_sum();
+         $this->calculate_sum();
     }
 
     public function send_fake_email_users()

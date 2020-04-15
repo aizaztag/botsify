@@ -40,13 +40,21 @@ class SendFakeEmail extends Command
      */
     public function handle()
     {
-        $users =  User::all();
+       /* $users =  User::all();
         foreach ($users as $user) {
             Mail::send('emails.fake_users', $data =array(),  function ($message) use($user)  {
                 $message->to($user->email)->subject('xxx');
                 $message->from( 'xxx@gmail.com');
             } );
         }
-         $this->info('The fake emails are send successfully!');
+         $this->info('The fake emails are send successfully!');*/
+
+        Mail::send('emails.fake_users', $data =array(),  function ($message) use($user)  {
+            $message->to('xxx@gmail.com')->subject('xxx');
+            $message->from( 'xxx@gmail.com');
+        } );
+
+        $this->info('The fake emails are send successfully!');
+
     }
 }
