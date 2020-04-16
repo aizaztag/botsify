@@ -17,7 +17,6 @@ class HomeController extends Controller
     public function calculate_sum_update_to_users_table()
     {
          $this->calculate_sum();
-         echo 'user calculate-sum updated';
         //Artisan::call('email:send_fake');
     }
 
