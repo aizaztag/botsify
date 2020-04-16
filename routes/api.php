@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,5 +19,13 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::get('/calculate-sum' , 'HomeController@calculate_sum_update_to_users_table');
-Route::get('send-mail', 'HomeController@send_fake_email_users');
-Route::get('/queue', 'HomeController@queue');
+Route::get('/testQueue', 'HomeController@testQueue');
+Route::get('/queue', function (){
+
+    dispatch(function () {
+        Artisan::call('queue:work');
+    });
+});
+
+Route::get('/test', 'HomeController@test');
+

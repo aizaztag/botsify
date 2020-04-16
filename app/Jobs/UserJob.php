@@ -31,9 +31,6 @@ class UserJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::send('emails.fake_users', $data =array(),  function ($message)  {
-            $message->to('xxx@gmail.com')->subject('xxx');
-            $message->from( 'xxx@gmail.com');
-        } );
+        $this->calculate_sum();
     }
 }

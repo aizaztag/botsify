@@ -33,32 +33,13 @@ class SendEmailJob implements ShouldQueue
      */
     public function handle()
     {
-
-        //$this->calculate_sum();
-
-        //Mail::to('taylor@laravel.com')->later('1');
-
-
-        /*Mail::send('emails.fake_users', $data =array(),  function ($message)  {
-            $message->to('xxx@gmail.com')->subject('xxx');
-            $message->from( 'xxx@gmail.com');
-        } );*/
-
          $users =  User::all();
          foreach ($users as $user) {
              Mail::send( 'emails.fake_users', $data =array(),  function ($message) use($user)  {
                  $message->to($user->email)->subject('xxx');
                  $message->from( 'xxx@gmail.com');
-             } );
+             });
              sleep(3);
          }
-/*
-
-        Mail::send('emails.fake_users', $data =array(),  function ($message)  {
-            $message->to('xxx@gmail.com')->subject('xxx');
-            $message->from( 'xxx@gmail.com');
-        } );*/
-
-
     }
 }

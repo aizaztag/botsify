@@ -28,6 +28,10 @@ class SendMailable extends Mailable
      */
     public function build()
     {
-        return $this->view('welcome');
+        return $this->from('mail@example.com', 'Mailtrap')
+            ->subject('Test Queued Email')
+            ->view('welcome');
+
+        //return $this->view('welcome');
     }
 }

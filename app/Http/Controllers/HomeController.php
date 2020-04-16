@@ -17,20 +17,28 @@ class HomeController extends Controller
     public function calculate_sum_update_to_users_table()
     {
          $this->calculate_sum();
-         dispatch(new SendEmailJob());
+         echo 'user calculate-sum updated';
         //Artisan::call('email:send_fake');
     }
 
-    public function send_fake_email_users()
+    public function testQueue()
     {
         dispatch(new UserJob());
-
     }
 
     public function queue()
     {
         $exitCode = Artisan::call('queue:work');
         echo 'queue:work';
+    }
 
+    public function test()
+    {
+        $emails;
+        $users =  User::all();
+        foreach ($users as $user) {
+            $emails[]  = $user->email;
+        }
+            echo '<pre>' ; print_r($emails); die;
     }
 }

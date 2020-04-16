@@ -43,7 +43,7 @@ class SendFakeEmail extends Command
      */
     public function handle()
     {
-        $this->calculate_sum();
+       // $this->calculate_sum();
         dispatch(new SendEmailJob());
         $this->info('The fake emails are send successfully!');
     }
