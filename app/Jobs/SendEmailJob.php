@@ -34,12 +34,16 @@ class SendEmailJob implements ShouldQueue
     public function handle()
     {
          $users =  User::all();
-         foreach ($users as $user) {
-             Mail::send( 'emails.fake_users', $data =array(),  function ($message) use($user)  {
-                 $message->to($user->email)->subject('xxx');
-                 $message->from( 'xxx@gmail.com');
-             });
-             sleep(3);
-         }
+         //$emails = ['xxx@gmail1' , 'xxx@gmail2.com' , 'aizaz.azzi@yahoo.com'];
+
+         //foreach ($users as $user)$emails[] = $user->email;
+
+        Mail::to(User::all()->pluck('email'))->send(new SendMailable());
+    }
+
+    public function getEmail()
+    {
+         return User::all()->pluck('email');
+         //foreach ($users as $user) $user->email;
     }
 }

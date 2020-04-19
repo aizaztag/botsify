@@ -22,22 +22,23 @@ class HomeController extends Controller
 
     public function testQueue()
     {
-        dispatch(new UserJob());
+        //dispatch(new UserJob());
+        dispatch(new SendEmailJob());
+
     }
 
     public function queue()
     {
-        $exitCode = Artisan::call('queue:work');
+        //$exitCode = Artisan::call('queue:work');
+
         echo 'queue:work';
     }
 
     public function test()
     {
-        $emails;
+        dd(User::all()->pluck('email' , 'name'));
         $users =  User::all();
-        foreach ($users as $user) {
-            $emails[]  = $user->email;
-        }
+        foreach ($users as $user)$emails[]  = $user->email;
             echo '<pre>' ; print_r($emails); die;
     }
 }
