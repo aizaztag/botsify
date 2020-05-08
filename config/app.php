@@ -166,14 +166,27 @@ return [
          * Package Service Providers...
          */
 
+        App\Providers\RolesServiceProvider::class,
+        App\Providers\EloquentEventServiceProvider::class,
+        Laravel\Passport\PassportServiceProvider::class,
+        /*package*/
+        LaraShout\ShoppingCart\ShoppingCartServiceProvider::class,
+
+
+
+
         /*
          * Application Service Providers...
          */
         App\Providers\AppServiceProvider::class,
         App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
+        App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+
+        //custom
+        App\Providers\LarashoutServiceProvider::class,
+
 
     ],
 
@@ -225,6 +238,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'ShoppingCart' => LaraShout\ShoppingCart\Facades\ShoppingCartFacade::class,//for package
+        'Larashout'   =>  App\Larashout\LarashoutFacades::class
+
 
     ],
 

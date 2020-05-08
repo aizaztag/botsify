@@ -2,43 +2,40 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\SendEmailJob;
-use App\Jobs\UserJob;
-use App\Traits\UserTrait;
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
-    use UserTrait;
-
-    //update user column calculated_sum and calling email send command
-    public function calculate_sum_update_to_users_table()
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
     {
-         $this->calculate_sum();
-        //Artisan::call('email:send_fake');
+        $this->middleware('auth');
+            //dd(Auth::user());
     }
 
-    public function testQueue()
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
     {
-        //dispatch(new UserJob());
-        dispatch(new SendEmailJob());
 
-    }
+        /*$row = \ShoppingCart::add('PLZ975778', 'Product Name', 5, 100.00, ['color' => 'red', 'size' => 'M']);
+        dd($row);*/
 
-    public function queue()
-    {
-        //$exitCode = Artisan::call('queue:work');
+        $groups = auth()->user()->groups;
 
-        echo 'queue:work';
-    }
+        $users = User::where('id', '<>', auth()->user()->id)->get();
+        $user = auth()->user();
 
-    public function test()
-    {
-        dd(User::all()->pluck('email' , 'name'));
-        $users =  User::all();
-        foreach ($users as $user)$emails[]  = $user->email;
-            echo '<pre>' ; print_r($emails); die;
+        //return view('welcome', ['groups' => $groups, 'users' => $users, 'user' => $user]);
+        return view('home');
     }
 }

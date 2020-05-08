@@ -17,6 +17,9 @@ use Illuminate\Support\Facades\Artisan;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+//Route::middleware('auth:api')->post('/post','PostController@store');
+Route::post('/post','PostController@store');
+
 
 Route::get('/calculate-sum' , 'HomeController@calculate_sum_update_to_users_table');
 Route::get('/testQueue', 'HomeController@testQueue');
@@ -28,4 +31,6 @@ Route::get('/queue', function (){
 });
 
 Route::get('/test', 'HomeController@test');
+
+Route::post('/message', 'ChatController@index');
 

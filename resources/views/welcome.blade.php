@@ -98,3 +98,83 @@
         </div>
     </body>
 </html>
+
+
+{{--<!doctype html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <title>Chatbox</title>
+
+    <script src="{{ asset('js/app.js') }}" defer></script>
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+--}}{{--
+    <chatbox-component></chatbox-component>
+--}}{{--
+
+    <home></home>
+
+
+</div>--}}
+
+</body>
+</html>
+{{--
+<!DOCTYPE html>
+<html lang="{{ config('app.locale') }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>News Talk</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+
+    <style>
+        .container {
+            padding-top: 100px;
+        }
+    </style>
+
+    <!-- Scripts -->
+
+</head>
+<body>
+
+<div id="app">
+    <!-- home Vue component -->
+    <home></home>
+
+</div>
+
+<!-- Scripts -->
+<script src="{{ asset('js/app.js') }}"></script>
+</body>
+</html>--}}
+
+{{--
+@extends('layouts.app')
+
+@section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-6">
+                <create-group :initial-users="{{ $users }}"></create-group>
+            </div>
+            <div class="col-sm-6">
+                <groups :initial-groups="{{ $groups }}" :user="{{ $user }}"></groups>
+            </div>
+        </div>
+    </div>
+@endsection
+--}}

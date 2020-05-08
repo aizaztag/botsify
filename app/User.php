@@ -2,13 +2,16 @@
 
 namespace App;
 
+use App\Traits\HasRolesAndPermissions;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Cashier\Billable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable ,HasRolesAndPermissions , Billable , HasApiTokens;
 
     /**
      * The attributes that are mass assignable.
@@ -36,4 +39,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function groups()
+    {
+        return $this->belongsToMany(Group::class)->withTimestamps();
+    }
+
+    public function posts(){
+        return $this->hasMany('App\Post');
+    }
+
+    public function plans(){
+        return $this->belongsToMany('App\Plan' , 'plan_user'  , 'user_id' , 'plan_id')->withTimestamps();
+    }
+
 }
